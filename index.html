@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>My Old Kentucky Home</title>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+    </head>
+
+    <body>
+
+        <h1 id="title">My Old Kentucky Home</h1>
+
+        <video src="https://www.cs.tufts.edu/comp/20/my_old_kentucky_home.mp4" id="music_video" controls></video>
+        <div id="timeindic"></div>
+        <div id="lyrics"></div>
+
+        <script>
+            function setLyrics() {
+                var lyrics = document.getElementById("lyrics");
+                var timeindic = document.getElementById("timeindic");
+                var time = (document.getElementById("music_video")).currentTime;
+                var beat = Math.floor((time - 9.0) * 2.36) / 2;
+
+                timeindic.innerHTML = time;
+                lyrics.innerHTML = beat;
+
+                if (beat < -0.5) {
+                    lyrics.innerHTML = "(prelude)";
+
+                } else if (beat < 0) {
+                    lyrics.innerHTML = "<span class='hi'>The</span> sun shines bright";
+                } else if (beat < 1) {
+                    lyrics.innerHTML = "The <span class='hi'>sun</span> shines bright";
+                } else if (beat < 2) {
+                    lyrics.innerHTML = "The sun <span class='hi'>shines</span> bright";
+                } else if (beat < 3) {
+                    lyrics.innerHTML = "The sun shines <span class='hi'>bright</span>";
+
+                } else if (beat < 3.5) {
+                    lyrics.innerHTML = "<span class='hi'>in</span> My Old Kentucky Home,";
+                } else if (beat < 4) {
+                    lyrics.innerHTML = "in <span class='hi'>My</span> Old Kentucky Home,";
+                } else if (beat < 5) {
+                    lyrics.innerHTML = "in My <span class='hi'>Old</span> Kentucky Home,";
+                } else if (beat < 6) {
+                    lyrics.innerHTML = "in My Old <span class='hi'>Kentucky</span> Home,";
+                } else if (beat < 7.5) {
+                    lyrics.innerHTML = "in My Old Kentucky <span class='hi'>Home</span>,";
+
+                } else if (beat < 9.5) {
+                    lyrics.innerHTML = "'Tis summer,";
+                } else if (beat < 15) {
+                    lyrics.innerHTML = "the people are gay;";
+                } else if (beat < 19) {
+                    lyrics.innerHTML = "The corn-top's ripe";
+                } else if (beat < 23) {
+                    lyrics.innerHTML = "and the meadow's in the bloom";
+                } else if (beat < 31) {
+                    lyrics.innerHTML = "While the birds make music all the day.";
+                }
+
+            }
+            var music_video = document.getElementById("music_video");
+            music_video.addEventListener("timeupdate", setLyrics, false);
+        </script>
+    </body>
+</html>	
